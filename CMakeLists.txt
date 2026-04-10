@@ -60,6 +60,7 @@ if("shell" IN_LIST ENABLE_MODULES)
     include(cmake/qml-module.cmake)
     include(cmake/qs-qml-module.cmake)
 
+    add_subdirectory(assets)
     add_subdirectory(qml)
     add_subdirectory(src)
 endif()
