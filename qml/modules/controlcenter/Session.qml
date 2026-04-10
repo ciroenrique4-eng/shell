@@ -1,6 +1,6 @@
-import "./state"
 import QtQuick
 import qs.modules.controlcenter
+import qs.modules.controlcenter.state
 
 QtObject {
     readonly property list<string> panes: PaneRegistry.labels

@@ -1,11 +1,11 @@
 pragma ComponentBehavior: Bound
 
-import "./kblayout"
 import QtQuick
 import Quickshell
 import Quickshell.Services.SystemTray
 import qs.components
 import qs.config
+import qs.modules.bar.popouts.kblayout
 
 Item {
     id: root

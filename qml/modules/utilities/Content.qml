@@ -1,9 +1,9 @@
-import "cards"
 import QtQuick
 import QtQuick.Layouts
 import qs.components
 import qs.config
 import qs.modules.bar.popouts as BarPopouts
+import qs.modules.utilities.cards
 
 Item {
     id: root

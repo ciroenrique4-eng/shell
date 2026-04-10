@@ -1,6 +1,5 @@
 pragma ComponentBehavior: Bound
 
-import "./sections"
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -17,6 +16,7 @@ import qs.utils
 import qs.modules.controlcenter
 import qs.modules.controlcenter.components
 import qs.modules.launcher.services
+import qs.modules.controlcenter.appearance.sections
 
 Item {
     id: root

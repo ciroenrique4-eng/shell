@@ -1,6 +1,5 @@
 pragma ComponentBehavior: Bound
 
-import "."
 import QtQuick
 import QtQuick.Layouts
 import qs.components
@@ -12,6 +11,7 @@ import qs.config
 import qs.utils
 import qs.modules.controlcenter
 import qs.modules.controlcenter.components
+import qs.modules.controlcenter.network
 
 DeviceDetails {
     id: root

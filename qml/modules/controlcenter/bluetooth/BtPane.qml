@@ -1,6 +1,5 @@
 pragma ComponentBehavior: Bound
 
-import "."
 import QtQuick
 import Quickshell.Bluetooth
 import Quickshell.Widgets
@@ -9,6 +8,7 @@ import qs.components.containers
 import qs.components.controls
 import qs.config
 import qs.modules.controlcenter
+import qs.modules.controlcenter.bluetooth
 import qs.modules.controlcenter.components
 
 SplitPaneWithDetails {

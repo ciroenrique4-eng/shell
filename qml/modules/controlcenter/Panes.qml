@@ -1,13 +1,5 @@
 pragma ComponentBehavior: Bound
 
-import "bluetooth"
-import "network"
-import "audio"
-import "appearance"
-import "taskbar"
-import "notifications"
-import "launcher"
-import "dashboard"
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Widgets
@@ -15,6 +7,14 @@ import qs.components
 import qs.services
 import qs.config
 import qs.modules.controlcenter
+import qs.modules.controlcenter.appearance
+import qs.modules.controlcenter.audio
+import qs.modules.controlcenter.bluetooth
+import qs.modules.controlcenter.dashboard
+import qs.modules.controlcenter.launcher
+import qs.modules.controlcenter.network
+import qs.modules.controlcenter.notifications
+import qs.modules.controlcenter.taskbar
 
 ClippingRectangle {
     id: root
