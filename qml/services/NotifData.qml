@@ -77,16 +77,15 @@ QtObject {
                     h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
                     const hash = (h2 >>> 0).toString(16).padStart(8, 0) + (h1 >>> 0).toString(16).padStart(8, 0);
 
-                    Paths; // Screw you qmlls
                     const cache = `${Paths.notifimagecache}/${hash}.png`;
-                    CUtils.saveItem(this, Qt.resolvedUrl(cache), () => {
+                    CUtils.saveItem(this, Paths.resolve(cache), () => {
                         notif.image = cache;
                         notif.dummyImageLoader.active = false;
                     });
                 }
 
                 anchors.fill: parent
-                source: Qt.resolvedUrl(notif.image)
+                source: Paths.resolve(notif.image)
                 fillMode: Image.PreserveAspectCrop
                 cache: false
                 asynchronous: true

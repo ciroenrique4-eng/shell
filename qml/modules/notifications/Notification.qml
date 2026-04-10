@@ -125,7 +125,7 @@ StyledRect {
 
                     Image {
                         anchors.fill: parent
-                        source: Qt.resolvedUrl(root.modelData.image)
+                        source: Paths.resolve(root.modelData.image)
                         fillMode: Image.PreserveAspectCrop
                         sourceSize.width: Config.notifs.sizes.image
                         sourceSize.height: Config.notifs.sizes.image

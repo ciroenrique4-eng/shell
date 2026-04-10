@@ -5,6 +5,7 @@ import qs.components
 import qs.components.containers
 import qs.services
 import qs.config
+import qs.utils
 
 StyledListView {
     id: root
@@ -25,7 +26,7 @@ StyledListView {
         required property Item source
         property real fadeMargin: 0.5
 
-        fragmentShader: Quickshell.shellPath("assets/shaders/fade.frag.qsb")
+        fragmentShader: Paths.resolve(Quickshell.shellPath("assets/shaders/fade.frag.qsb"))
     }
     onLyricsActuallyVisibleChanged: {
         if (!lyricsActuallyVisible)

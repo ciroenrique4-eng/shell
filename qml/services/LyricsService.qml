@@ -23,8 +23,8 @@ Singleton {
     property int currentRequestId: 0
     property var lyricsMap: ({})
 
-    readonly property string lyricsDir: Paths.absolutePath(Config.paths.lyricsDir)
-    readonly property string lyricsMapFile: Paths.absolutePath(Config.paths.lyricsDir) + "/lyrics_map.json"
+    readonly property string lyricsDir: Paths.absolutePath(Config.paths.lyricsDir, false)
+    readonly property string lyricsMapFile: lyricsDir + "/lyrics_map.json"
     readonly property alias model: lyricsModel
     readonly property alias candidatesModel: fetchedCandidatesModel
     readonly property var _netEaseHeaders: ({

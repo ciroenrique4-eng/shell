@@ -19,17 +19,26 @@ Singleton {
 
     readonly property string imagecache: `${cache}/imagecache`
     readonly property string notifimagecache: `${imagecache}/notifs`
-    readonly property string wallsdir: Quickshell.env("CAELESTIA_WALLPAPERS_DIR") || absolutePath(Config.paths.wallpaperDir)
+    readonly property string wallsdir: Quickshell.env("CAELESTIA_WALLPAPERS_DIR") || absolutePath(Config.paths.wallpaperDir, false)
     readonly property string recsdir: Quickshell.env("CAELESTIA_RECORDINGS_DIR") || `${videos}/Recordings`
     readonly property string libdir: Quickshell.env("CAELESTIA_LIB_DIR") || "/usr/lib/caelestia"
 
+    function resolve(path: string): url {
+        if (path.startsWith("root:/"))
+            path = Quickshell.shellPath(path.slice(6));
+        if (!path.startsWith("image://") && !path.startsWith("file://"))
+            path = "file://" + path;
+        return path;
+    }
+
     function toLocalFile(path: url): string {
-        path = Qt.resolvedUrl(path);
+        path = resolve(path);
         return path.toString() ? CUtils.toLocalFile(path) : "";
     }
 
-    function absolutePath(path: string): string {
-        return toLocalFile(path.replace(/~|(\$({?)HOME(}?))+/, home));
+    function absolutePath(path: string, resolved = true): string {
+        path = toLocalFile(path.replace(/~|(\$({?)HOME(}?))+/, home));
+        return resolved ? resolve(path) : path;
     }
 
     function shortenHome(path: string): string {

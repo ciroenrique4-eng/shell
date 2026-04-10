@@ -98,7 +98,7 @@ StyledRect {
                 id: imageComp
 
                 Image {
-                    source: Qt.resolvedUrl(root.image)
+                    source: Paths.resolve(root.image)
                     fillMode: Image.PreserveAspectCrop
                     sourceSize.width: Config.notifs.sizes.image
                     sourceSize.height: Config.notifs.sizes.image

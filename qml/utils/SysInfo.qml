@@ -13,7 +13,7 @@ Singleton {
     property string osPrettyName
     property string osId
     property list<string> osIdLike
-    property string osLogo: Qt.resolvedUrl(`${Quickshell.shellDir}/assets/logo.svg`)
+    property string osLogo: Paths.resolve(`${Quickshell.shellDir}/assets/logo.svg`)
     property bool isDefaultLogo: true
 
     property string uptime
@@ -37,10 +37,10 @@ Singleton {
 
             const logo = Quickshell.iconPath(fd("LOGO"), true);
             if (Config.general.logo === "caelestia") {
-                root.osLogo = Qt.resolvedUrl(`${Quickshell.shellDir}/assets/logo.svg`);
+                root.osLogo = Paths.resolve(`${Quickshell.shellDir}/assets/logo.svg`);
                 root.isDefaultLogo = true;
             } else if (Config.general.logo) {
-                root.osLogo = Quickshell.iconPath(Config.general.logo, true) || "file://" + Paths.absolutePath(Config.general.logo);
+                root.osLogo = Quickshell.iconPath(Config.general.logo, true) || Paths.absolutePath(Config.general.logo);
                 root.isDefaultLogo = false;
             } else if (logo) {
                 root.osLogo = logo;

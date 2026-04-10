@@ -1,9 +1,10 @@
 import QtQuick
 import Quickshell
+import qs.utils
 
 ShaderEffect {
     required property Item source
     required property Item maskSource
 
-    fragmentShader: Quickshell.shellPath("assets/shaders/opacitymask.frag.qsb")
+    fragmentShader: Paths.resolve(Quickshell.shellPath("assets/shaders/opacitymask.frag.qsb"))
 }

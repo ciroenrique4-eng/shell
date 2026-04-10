@@ -23,6 +23,6 @@ Image {
         id: manager
 
         item: root
-        cacheDir: Qt.resolvedUrl(Paths.imagecache)
+        cacheDir: Paths.resolve(Paths.imagecache)
     }
 }

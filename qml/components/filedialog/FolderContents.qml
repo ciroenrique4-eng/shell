@@ -199,7 +199,7 @@ Item {
             Component.onCompleted: {
                 const file = item.modelData;
                 if (file.isImage)
-                    source = Qt.resolvedUrl(file.path);
+                    source = Paths.resolve(file.path);
                 else if (!file.isDir)
                     source = Quickshell.iconPath(file.mimeType.replace("/", "-"), "application-x-zerosize");
                 else if (root.dialog.cwd.length === 1 && ["Desktop", "Documents", "Downloads", "Music", "Pictures", "Public", "Templates", "Videos"].includes(file.name))
