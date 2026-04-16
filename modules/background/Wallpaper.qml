@@ -12,7 +12,7 @@ Item {
     id: root
 
     property string source: Wallpapers.current
-    property Image current: one
+    property Item current: one
     property bool completed
 
     onSourceChanged: {
@@ -102,15 +102,76 @@ Item {
         }
     }
 
-    Img {
+    ImgWrapper {
         id: one
     }
 
-    Img {
+    ImgWrapper {
         id: two
     }
 
-    component Img: CachingImage {
+    component ImgWrapper: Item {
+        id: wrapper
+
+        function update(): void {
+            if (path === root.source)
+                root.current = this;
+            else
+                path = root.source;
+        }
+
+        property string path: ""
+        readonly property bool isGif: path.endsWith(".gif")
+
+        anchors.fill: parent
+        opacity: 0
+        scale: Wallpapers.showPreview ? 1 : 0.8
+
+        CachingImage {
+            id: staticImg
+            anchors.fill: parent
+            path: wrapper.path
+            visible: !wrapper.isGif && wrapper.path !== ""
+
+            onStatusChanged: {
+                if (status === Image.Ready)
+                    root.current = wrapper;
+            }
+        }
+
+        Loader {
+            id: gifLoader
+            anchors.fill: parent
+            active: wrapper.isGif && wrapper.path !== ""
+
+            sourceComponent: AnimatedImage {
+                source: wrapper.path
+
+                Component.onCompleted: {
+                    root.current = wrapper;
+                }
+            }
+        }
+
+        states: State {
+            name: "visible"
+            when: root.current === wrapper
+
+            PropertyChanges {
+                wrapper.opacity: 1
+                wrapper.scale: 1
+            }
+        }
+
+        transitions: Transition {
+            Anim {
+                target: wrapper
+                properties: "opacity,scale"
+            }
+        }
+    }
+
+    component ImgStatic: CachingImage {
         id: img
 
         function update(): void {
