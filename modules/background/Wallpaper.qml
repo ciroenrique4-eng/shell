@@ -143,6 +143,7 @@ Item {
 
             sourceComponent: AnimatedImage {
                 source: wrapper.path
+                playing: root.current === wrapper
 
                 Component.onCompleted: {
                     root.current = wrapper;
@@ -163,44 +164,6 @@ Item {
         transitions: Transition {
             Anim {
                 target: wrapper
-                properties: "opacity,scale"
-            }
-        }
-    }
-
-    component ImgStatic: CachingImage {
-        id: img
-
-        function update(): void {
-            if (path === root.source)
-                root.current = this;
-            else
-                path = root.source;
-        }
-
-        anchors.fill: parent
-
-        opacity: 0
-        scale: Wallpapers.showPreview ? 1 : 0.8
-
-        onStatusChanged: {
-            if (status === Image.Ready)
-                root.current = this;
-        }
-
-        states: State {
-            name: "visible"
-            when: root.current === img
-
-            PropertyChanges {
-                img.opacity: 1
-                img.scale: 1
-            }
-        }
-
-        transitions: Transition {
-            Anim {
-                target: img
                 properties: "opacity,scale"
             }
         }
