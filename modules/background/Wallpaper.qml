@@ -110,6 +110,9 @@ Item {
     component ImgWrapper: Item {
         id: wrapper
 
+        property string path: ""
+        readonly property bool isGif: path.endsWith(".gif")
+
         function update(): void {
             if (path === root.source)
                 root.current = this;
@@ -117,15 +120,13 @@ Item {
                 path = root.source;
         }
 
-        property string path: ""
-        readonly property bool isGif: path.endsWith(".gif")
-
         anchors.fill: parent
         opacity: 0
         scale: Wallpapers.showPreview ? 1 : 0.8
 
         CachingImage {
             id: staticImg
+
             anchors.fill: parent
             path: wrapper.path
             visible: !wrapper.isGif && wrapper.path !== ""
@@ -138,6 +139,7 @@ Item {
 
         Loader {
             id: gifLoader
+
             anchors.fill: parent
             active: wrapper.isGif && wrapper.path !== ""
 
