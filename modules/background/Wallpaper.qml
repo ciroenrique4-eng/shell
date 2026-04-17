@@ -124,6 +124,23 @@ Item {
         opacity: 0
         scale: Wallpapers.showPreview ? 1 : 0.8
 
+        states: State {
+            name: "visible"
+            when: root.current === wrapper
+
+            PropertyChanges {
+                wrapper.opacity: 1
+                wrapper.scale: 1
+            }
+        }
+
+        transitions: Transition {
+            Anim {
+                target: wrapper
+                properties: "opacity,scale"
+            }
+        }
+
         CachingImage {
             id: staticImg
 
@@ -150,23 +167,6 @@ Item {
                 Component.onCompleted: {
                     root.current = wrapper;
                 }
-            }
-        }
-
-        states: State {
-            name: "visible"
-            when: root.current === wrapper
-
-            PropertyChanges {
-                wrapper.opacity: 1
-                wrapper.scale: 1
-            }
-        }
-
-        transitions: Transition {
-            Anim {
-                target: wrapper
-                properties: "opacity,scale"
             }
         }
     }
